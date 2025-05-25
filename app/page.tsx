@@ -1,103 +1,96 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import Link from 'next/link';
+import { useUser } from '@clerk/nextjs';
+
+export default function HomePage() {
+  const { isSignedIn } = useUser();
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="min-h-screen bg-gray-50 px-4 py-12 sm:py-16 lg:py-20">
+      {/* Hero Section */}
+      <section className="max-w-6xl mx-auto text-center mb-20">
+        <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-3xl shadow-xl text-white p-10 sm:p-16">
+          <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight">
+            Smarter Eating with AI-Powered Meal Planning
+          </h1>
+          <p className="text-lg sm:text-xl mb-8">
+            Personalized meal plans tailored to your diet, goals & taste — all powered by AI.
+          </p>
+          <Link
+            href={isSignedIn ? '/mealplan' : '/sign-up'}
+            className="inline-block bg-white text-emerald-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {isSignedIn ? 'Generate My Plan' : 'Get Started Free'}
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </section>
+
+      {/* How It Works */}
+      <section className="max-w-6xl mx-auto mb-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-800">How It Works</h2>
+          <p className="mt-2 text-gray-600">
+            Just a few simple steps to receive your personalized weekly meal plan.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-10">
+          {[
+            {
+              title: 'Create an Account',
+              desc: 'Sign up to access personalized plans and track your preferences.',
+              icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.121 17.804A9 9 0 1118.879 6.196 9 9 0 015.121 17.804z" />
+                </svg>
+              ),
+            },
+            {
+              title: 'Set Your Preferences',
+              desc: 'Tell us about your goals, allergies, and food preferences.',
+              icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+              ),
+            },
+            {
+              title: 'Generate Your Plan',
+              desc: 'Get a fresh, weekly meal plan optimized for you — instantly.',
+              icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ),
+            },
+          ].map((step, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 text-center flex flex-col items-center"
+            >
+              <div className="bg-emerald-100 text-emerald-600 p-4 rounded-full mb-4">
+                {step.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">{step.title}</h3>
+              <p className="text-center text-gray-600">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="text-center">
+        <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          Ready to eat smarter?
+        </h3>
+        <Link
+          href={isSignedIn ? '/mealplan' : '/sign-up'}
+          className="inline-block bg-emerald-500 text-white font-medium px-6 py-3 rounded-full shadow-md hover:bg-emerald-600 transition"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          {isSignedIn ? 'View My Meal Plan' : 'Start Now'}
+        </Link>
+      </section>
+    </main>
   );
 }
