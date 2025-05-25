@@ -883,6 +883,7 @@ export namespace Prisma {
     id: string | null
     userId: string | null
     email: string | null
+    stripeCustomerId: string | null
     subscriptionActive: boolean | null
     subscriptionTier: string | null
     stripeSubscriptionId: string | null
@@ -894,6 +895,7 @@ export namespace Prisma {
     id: string | null
     userId: string | null
     email: string | null
+    stripeCustomerId: string | null
     subscriptionActive: boolean | null
     subscriptionTier: string | null
     stripeSubscriptionId: string | null
@@ -905,6 +907,7 @@ export namespace Prisma {
     id: number
     userId: number
     email: number
+    stripeCustomerId: number
     subscriptionActive: number
     subscriptionTier: number
     stripeSubscriptionId: number
@@ -918,6 +921,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     email?: true
+    stripeCustomerId?: true
     subscriptionActive?: true
     subscriptionTier?: true
     stripeSubscriptionId?: true
@@ -929,6 +933,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     email?: true
+    stripeCustomerId?: true
     subscriptionActive?: true
     subscriptionTier?: true
     stripeSubscriptionId?: true
@@ -940,6 +945,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     email?: true
+    stripeCustomerId?: true
     subscriptionActive?: true
     subscriptionTier?: true
     stripeSubscriptionId?: true
@@ -1024,6 +1030,7 @@ export namespace Prisma {
     id: string
     userId: string
     email: string
+    stripeCustomerId: string | null
     subscriptionActive: boolean
     subscriptionTier: string | null
     stripeSubscriptionId: string | null
@@ -1052,6 +1059,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     email?: boolean
+    stripeCustomerId?: boolean
     subscriptionActive?: boolean
     subscriptionTier?: boolean
     stripeSubscriptionId?: boolean
@@ -1063,6 +1071,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     email?: boolean
+    stripeCustomerId?: boolean
     subscriptionActive?: boolean
     subscriptionTier?: boolean
     stripeSubscriptionId?: boolean
@@ -1074,6 +1083,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     email?: boolean
+    stripeCustomerId?: boolean
     subscriptionActive?: boolean
     subscriptionTier?: boolean
     stripeSubscriptionId?: boolean
@@ -1085,6 +1095,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     email?: boolean
+    stripeCustomerId?: boolean
     subscriptionActive?: boolean
     subscriptionTier?: boolean
     stripeSubscriptionId?: boolean
@@ -1092,7 +1103,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "email" | "subscriptionActive" | "subscriptionTier" | "stripeSubscriptionId" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "email" | "stripeCustomerId" | "subscriptionActive" | "subscriptionTier" | "stripeSubscriptionId" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
 
   export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Profile"
@@ -1101,6 +1112,7 @@ export namespace Prisma {
       id: string
       userId: string
       email: string
+      stripeCustomerId: string | null
       subscriptionActive: boolean
       subscriptionTier: string | null
       stripeSubscriptionId: string | null
@@ -1532,6 +1544,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Profile", 'String'>
     readonly userId: FieldRef<"Profile", 'String'>
     readonly email: FieldRef<"Profile", 'String'>
+    readonly stripeCustomerId: FieldRef<"Profile", 'String'>
     readonly subscriptionActive: FieldRef<"Profile", 'Boolean'>
     readonly subscriptionTier: FieldRef<"Profile", 'String'>
     readonly stripeSubscriptionId: FieldRef<"Profile", 'String'>
@@ -1921,6 +1934,7 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     email: 'email',
+    stripeCustomerId: 'stripeCustomerId',
     subscriptionActive: 'subscriptionActive',
     subscriptionTier: 'subscriptionTier',
     stripeSubscriptionId: 'stripeSubscriptionId',
@@ -2019,6 +2033,7 @@ export namespace Prisma {
     id?: StringFilter<"Profile"> | string
     userId?: StringFilter<"Profile"> | string
     email?: StringFilter<"Profile"> | string
+    stripeCustomerId?: StringNullableFilter<"Profile"> | string | null
     subscriptionActive?: BoolFilter<"Profile"> | boolean
     subscriptionTier?: StringNullableFilter<"Profile"> | string | null
     stripeSubscriptionId?: StringNullableFilter<"Profile"> | string | null
@@ -2030,6 +2045,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     email?: SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
     subscriptionActive?: SortOrder
     subscriptionTier?: SortOrderInput | SortOrder
     stripeSubscriptionId?: SortOrderInput | SortOrder
@@ -2045,6 +2061,7 @@ export namespace Prisma {
     OR?: ProfileWhereInput[]
     NOT?: ProfileWhereInput | ProfileWhereInput[]
     email?: StringFilter<"Profile"> | string
+    stripeCustomerId?: StringNullableFilter<"Profile"> | string | null
     subscriptionActive?: BoolFilter<"Profile"> | boolean
     subscriptionTier?: StringNullableFilter<"Profile"> | string | null
     createdAt?: DateTimeFilter<"Profile"> | Date | string
@@ -2055,6 +2072,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     email?: SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
     subscriptionActive?: SortOrder
     subscriptionTier?: SortOrderInput | SortOrder
     stripeSubscriptionId?: SortOrderInput | SortOrder
@@ -2072,6 +2090,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Profile"> | string
     userId?: StringWithAggregatesFilter<"Profile"> | string
     email?: StringWithAggregatesFilter<"Profile"> | string
+    stripeCustomerId?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     subscriptionActive?: BoolWithAggregatesFilter<"Profile"> | boolean
     subscriptionTier?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     stripeSubscriptionId?: StringNullableWithAggregatesFilter<"Profile"> | string | null
@@ -2083,6 +2102,7 @@ export namespace Prisma {
     id?: string
     userId: string
     email: string
+    stripeCustomerId?: string | null
     subscriptionActive?: boolean
     subscriptionTier?: string | null
     stripeSubscriptionId?: string | null
@@ -2094,6 +2114,7 @@ export namespace Prisma {
     id?: string
     userId: string
     email: string
+    stripeCustomerId?: string | null
     subscriptionActive?: boolean
     subscriptionTier?: string | null
     stripeSubscriptionId?: string | null
@@ -2105,6 +2126,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     subscriptionActive?: BoolFieldUpdateOperationsInput | boolean
     subscriptionTier?: NullableStringFieldUpdateOperationsInput | string | null
     stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -2116,6 +2138,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     subscriptionActive?: BoolFieldUpdateOperationsInput | boolean
     subscriptionTier?: NullableStringFieldUpdateOperationsInput | string | null
     stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -2127,6 +2150,7 @@ export namespace Prisma {
     id?: string
     userId: string
     email: string
+    stripeCustomerId?: string | null
     subscriptionActive?: boolean
     subscriptionTier?: string | null
     stripeSubscriptionId?: string | null
@@ -2138,6 +2162,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     subscriptionActive?: BoolFieldUpdateOperationsInput | boolean
     subscriptionTier?: NullableStringFieldUpdateOperationsInput | string | null
     stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -2149,6 +2174,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     subscriptionActive?: BoolFieldUpdateOperationsInput | boolean
     subscriptionTier?: NullableStringFieldUpdateOperationsInput | string | null
     stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -2171,11 +2197,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2189,6 +2210,11 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -2211,6 +2237,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     email?: SortOrder
+    stripeCustomerId?: SortOrder
     subscriptionActive?: SortOrder
     subscriptionTier?: SortOrder
     stripeSubscriptionId?: SortOrder
@@ -2222,6 +2249,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     email?: SortOrder
+    stripeCustomerId?: SortOrder
     subscriptionActive?: SortOrder
     subscriptionTier?: SortOrder
     stripeSubscriptionId?: SortOrder
@@ -2233,6 +2261,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     email?: SortOrder
+    stripeCustomerId?: SortOrder
     subscriptionActive?: SortOrder
     subscriptionTier?: SortOrder
     stripeSubscriptionId?: SortOrder
@@ -2258,14 +2287,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2282,6 +2303,14 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -2302,12 +2331,12 @@ export namespace Prisma {
     set?: string
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -2328,11 +2357,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2345,6 +2369,11 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2386,14 +2415,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -2420,6 +2441,14 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {

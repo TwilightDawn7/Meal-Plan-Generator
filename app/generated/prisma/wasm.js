@@ -124,6 +124,7 @@ exports.Prisma.ProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   email: 'email',
+  stripeCustomerId: 'stripeCustomerId',
   subscriptionActive: 'subscriptionActive',
   subscriptionTier: 'subscriptionTier',
   stripeSubscriptionId: 'stripeSubscriptionId',
