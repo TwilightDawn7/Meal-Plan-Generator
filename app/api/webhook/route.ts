@@ -16,6 +16,7 @@ export async function POST(request: NextRequest){
   try {
     event = stripe.webhooks.constructEvent(body, signature || "", webhookSecret)
   } catch(error: any) {
+    console.error("Webhook handler error:", error.message);
       return NextResponse.json({error: error.message}, {status: 400});
   }
 try{
@@ -24,6 +25,7 @@ try{
   switch (event.type){
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
+      console.log("Session completed:", session);
       await handleCheckoutSessionCompleted(session);
       break
     }
@@ -45,36 +47,51 @@ try{
 }
 return NextResponse.json({});
 
-  async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session){
-    {
-      const userId = session.metadata?.clerkUserId;
+  async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
+  const userId = session.metadata?.clerkUserId;
+  const subscriptionId = session.subscription as string;
 
-      if(!userId){
-        console.log("No user id")
-        return
-      }
+  console.log("Webhook received checkout.session.completed:");
+  console.log("userId:", userId);
+  console.log("subscriptionId:", subscriptionId);
+  console.log("metadata:", session.metadata);
+  console.log("customer_email:", session.customer_email);
 
-      const subscriptionId = session.subscription as string;
-
-      if(!subscriptionId){
-        console.log("No sub id")
-        return
-      }
-
-      try{
-        await prisma.profile.update({
-          where: {userId},
-          data: {
-            stripeSubscriptionId: subscriptionId,
-            subscriptionActive: true,
-            subscriptionTier: session.metadata?.planType || null
-          }
-        })
-      } catch (error: any){
-        console.log(error.message);
-      }
-    }
+  if (!userId || !subscriptionId) {
+    console.log("Missing userId or subscriptionId. Skipping.");
+    return;
   }
+
+  try {
+    const profile = await prisma.profile.findUnique({ where: { userId } });
+
+    if (profile) {
+      await prisma.profile.update({
+        where: { userId },
+        data: {
+          stripeSubscriptionId: subscriptionId,
+          subscriptionActive: true,
+          subscriptionTier: session.metadata?.planType || null,
+        },
+      });
+      console.log("Profile updated for user:", userId);
+    } else {
+      await prisma.profile.create({
+        data: {
+          userId,
+          email: session.customer_email ?? "",
+          stripeSubscriptionId: subscriptionId,
+          subscriptionActive: true,
+          subscriptionTier: session.metadata?.planType || null,
+        },
+      });
+      console.log("Profile created for user:", userId);
+    }
+  } catch (error: any) {
+    console.error("Error in checkout handler:", error.message);
+  }
+}
+
 
   async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
   const subId = (invoice as Stripe.Invoice & { subscription?: string }).subscription;

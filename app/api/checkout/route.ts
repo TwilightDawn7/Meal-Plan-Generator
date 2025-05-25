@@ -41,6 +41,14 @@ try{
     )
   }
 
+  const customer = await stripe.customers.create({
+    email,
+    metadata: {
+      clerkUserId: userId,
+    },
+});
+
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [
@@ -49,7 +57,7 @@ try{
         quantity: 1,
       },
     ],
-    customer_email: email,
+    customer: customer.id,
     mode: "subscription",
     metadata: {clerkUserId: userId, planType },
     success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/?session_id={CHECKOUT_SESSION_ID}`,
