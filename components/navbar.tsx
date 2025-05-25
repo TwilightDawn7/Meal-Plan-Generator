@@ -12,15 +12,17 @@ export default function NavBar() {
   return (
     <nav className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/">
-          <Image 
-            className="text-xl font-bold text-emerald-700 cursor-pointer"
-            src="/logo.jpeg" 
-            width={68} 
-            height={68} 
-            alt="Logo"
-          />
-        </Link>
+        {user?.imageUrl && (
+  <Link href="/profile">
+    <Image 
+      src={user.imageUrl} 
+      alt="Profile Picture" 
+      width={40} 
+      height={40} 
+      className="rounded-full"
+    />
+  </Link>
+)}
       
         <div className="space-x-6 flex items-center">
           <SignedIn>
